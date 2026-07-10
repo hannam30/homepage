@@ -1,0 +1,17 @@
+화면 여는 방법
+1. 지금 바로 (서버가 켜져 있을 때)
+브라우저 주소창에 입력:
+
+http://localhost:3000/
+Enter 누르면 사주성지학회 홈페이지가 보입니다.
+
+2. 서버가 꺼져 있을 때
+터미널(PowerShell 또는 Cursor 터미널)에서:
+
+cd C:\homepage
+npm run dev
+Local: http://localhost:3000/ 이 나오면, 위 주소로 접속하면 됩니다.
+
+3. Cursor 안에서 보기
+Cursor 하단 터미널 탭 열기
+npm run dev 실행 후 나오는 http://localhost:3000/ 링크 Ctrl+클릭
