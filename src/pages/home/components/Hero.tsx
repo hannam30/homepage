@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface HeroProps {
   onNavigate?: (section: string) => void;
 }
@@ -39,15 +41,15 @@ export default function Hero({ onNavigate }: HeroProps) {
 
           {/* CTA row */}
           <div className="mt-28 md:mt-36 flex flex-col sm:flex-row gap-4">
-            <a
-              onClick={(e) => { e.preventDefault(); onNavigate?.("fortune"); }}
-              className="group inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-primary-800 text-background-50 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer hover:bg-primary-700 transition-all duration-300"
+            <Link
+              to="/unse"
+              className="group inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-accent-600 text-background-50 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer hover:bg-accent-700 transition-all duration-300"
             >
-              상담 예약하기
-              <span className="w-6 h-6 flex items-center justify-center rounded-full bg-background-50/90 text-primary-800 group-hover:bg-accent-200 transition-colors">
+              운세 확인하기
+              <span className="w-6 h-6 flex items-center justify-center rounded-full bg-background-50/90 text-accent-800 group-hover:bg-accent-200 transition-colors">
                 <i className="ri-arrow-right-line text-sm"></i>
               </span>
-            </a>
+            </Link>
             <a
               onClick={(e) => { e.preventDefault(); onNavigate?.("programs"); }}
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-primary-300 text-primary-800 text-sm tracking-wide whitespace-nowrap cursor-pointer hover:bg-primary-50 hover:border-primary-500 transition-all duration-300"

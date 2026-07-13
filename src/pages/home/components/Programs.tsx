@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { programs } from "@/mocks/home";
 
 interface ProgramsProps {
@@ -347,6 +348,13 @@ export default function Programs({ onNavigate }: ProgramsProps) {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  to="/unse"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-foreground-950 text-sm font-medium rounded-md whitespace-nowrap cursor-pointer hover:bg-accent-400 transition-colors"
+                >
+                  운세 확인하기
+                  <i className="ri-arrow-right-line" />
+                </Link>
                 <span className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-background-50/20 text-background-50/70 text-sm rounded-md whitespace-nowrap">
                   <i className="ri-shield-check-line" />
                   성지사주학회 제공

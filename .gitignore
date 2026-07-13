@@ -7,3 +7,9 @@ out
 .DS_Store
 *.local
 .vite
+private-engine/
+.vercel
+
+# 결과 엔진·완성본 (절대 배포/커밋 금지)
+phone_choice/
+../phone_choice/

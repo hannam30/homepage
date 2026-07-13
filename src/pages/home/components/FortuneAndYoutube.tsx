@@ -1,4 +1,4 @@
-import { youtubeVideos } from "@/mocks/home";
+import { youtubeVideos, YOUTUBE_URL } from "@/mocks/home";
 
 interface FortuneAndYoutubeProps {
   onNavigate?: (section: string) => void;
@@ -125,9 +125,9 @@ export default function FortuneAndYoutube({ onNavigate }: FortuneAndYoutubeProps
               </h2>
             </div>
             <a
-              href="https://youtube.com"
+              href={YOUTUBE_URL}
               target="_blank"
-              rel="nofollow noopener"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 text-foreground-800 text-sm cursor-pointer hover:text-primary-700 transition-colors whitespace-nowrap"
             >
               유튜브 채널 전체 보기
@@ -140,7 +140,7 @@ export default function FortuneAndYoutube({ onNavigate }: FortuneAndYoutubeProps
           {/* Featured + side videos */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Featured */}
-            <a href="https://youtube.com" target="_blank" rel="nofollow noopener" className="lg:col-span-8 group relative aspect-[16/10] rounded-lg overflow-hidden cursor-pointer">
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="lg:col-span-8 group relative aspect-[16/10] rounded-lg overflow-hidden cursor-pointer">
               <img
                 src="https://readdy.ai/api/search-image?query=Cinematic%20oriental%20astrology%20video%20thumbnail%20with%20handwritten%20bazi%20chart%20on%20cream%20parchment%2C%20chinese%20calligraphy%20brush%20strokes%20and%20golden%20zodiac%20symbols%2C%20warm%20amber%20studio%20lighting%2C%20moody%20editorial%20photography%2C%20professional%20academic%20mood%2C%20muted%20brown%20and%20cream%20palette&width=1600&height=1000&seq=saju-yt-featured-2026&orientation=landscape"
                 alt={youtubeVideos[0].title}
@@ -170,9 +170,9 @@ export default function FortuneAndYoutube({ onNavigate }: FortuneAndYoutubeProps
               {youtubeVideos.slice(1).map((v, i) => (
                 <a
                   key={v.title}
-                  href="https://youtube.com"
+                  href={YOUTUBE_URL}
                   target="_blank"
-                  rel="nofollow noopener"
+                  rel="noopener noreferrer"
                   className="group flex-1 relative rounded-lg overflow-hidden bg-background-100 min-h-[180px] flex flex-col justify-end cursor-pointer"
                 >
                   <img

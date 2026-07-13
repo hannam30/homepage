@@ -79,6 +79,30 @@ export const programs = [
   },
 ];
 
+export const societyNews = [
+  {
+    id: "n1",
+    date: "2026.07.08",
+    title: "성지 기문둔갑 7.0 공개 설명회 안내",
+    body: "오는 7월 20일(일) 오후 2시, 학회 강의실에서 성지 기문둔갑 7.0의 신규 기능을 소개하는 공개 설명회를 진행합니다. 사전 신청자에 한해 참석이 가능하며, 좌석이 한정되어 있으니 서둘러 신청해 주시기 바랍니다.",
+    isNew: true,
+  },
+  {
+    id: "n2",
+    date: "2026.06.25",
+    title: "2026년 하반기 정기 강좌 수강생 모집",
+    body: "기문둔갑 입문·중급 과정 하반기 정기 강좌 수강생을 모집합니다. 수강 기간은 8월부터 12월까지이며, 자세한 커리큘럼과 수강료는 학회 사무실로 문의해 주세요.",
+    isNew: true,
+  },
+  {
+    id: "n3",
+    date: "2026.05.12",
+    title: "학회 이전 안내 — 은평구 대조동",
+    body: "사주성지학회가 서울특별시 은평구 연서로20길 5(대조동 221-61)로 이전하였습니다. 3·6호선 연신내역, 6호선 구산역에서 도보 약 5~7분입니다. 방문 상담은 사전 예약 후 이용해 주시기 바랍니다.",
+    isNew: false,
+  },
+];
+
 export const blogs = [
   {
     category: "고전 강독",
@@ -120,17 +144,20 @@ export const youtubeVideos = [
   { title: "일주로 보는 사람의 성향 12강", views: "8.7만", duration: "21:05" },
 ];
 
+export const BLOG_URL = "https://blog.naver.com/j023039";
+export const YOUTUBE_URL = "https://www.youtube.com/@SungJi_gimundungab";
+
 export const navItems = [
   { label: "학회 소개", href: "#about" },
   { label: "프로그램", href: "#programs" },
-  { label: "운세 상담", href: "#fortune" },
-  { label: "학술 블로그", href: "#blog" },
-  { label: "유튜브", href: "#youtube" },
+  { label: "운세 상담", href: "/unse", route: true },
+  { label: "학술 블로그", href: BLOG_URL, external: true },
+  { label: "유튜브", href: YOUTUBE_URL, external: true },
 ];
 
 export const socialLinks = [
   { icon: "ri-instagram-line", label: "Instagram", href: "https://instagram.com" },
-  { icon: "ri-youtube-fill", label: "YouTube", href: "https://youtube.com" },
+  { icon: "ri-youtube-fill", label: "YouTube", href: YOUTUBE_URL },
   { icon: "ri-kakao-talk-fill", label: "KakaoTalk", href: "https://kakao.com" },
   { icon: "ri-twitter-x-fill", label: "X", href: "https://x.com" },
   { icon: "ri-facebook-fill", label: "Facebook", href: "https://facebook.com" },

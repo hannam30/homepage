@@ -1,4 +1,4 @@
-import { blogs } from "@/mocks/home";
+import { blogs, BLOG_URL } from "@/mocks/home";
 
 const sideImages = [
   "https://readdy.ai/api/search-image?query=Oriental%20calligraphy%20brush%20strokes%20painted%20on%20cream%20parchment%20paper%20with%20chinese%20zodiac%20symbols%2C%20warm%20amber%20studio%20lighting%2C%20editorial%20still%20life%20photography%2C%20muted%20earthy%20brown%20tones%2C%20refined%20academic%20composition%2C%20minimal%20zen%20aesthetic&width=600&height=600&seq=saju-blog-side-1-2026&orientation=squarish",
@@ -18,23 +18,29 @@ export default function Blog() {
             </div>
             <h2 className="font-heading text-foreground-950 text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-light max-w-3xl">
               학회 연구진의<br />
-              <span className="italic font-medium">학술 블로그</span>
+              <span className="italic font-medium">블로그</span>
             </h2>
           </div>
           <a
-            href="#"
+            href={BLOG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 text-foreground-800 text-sm cursor-pointer hover:text-primary-700 transition-colors whitespace-nowrap group"
           >
-            전체 글 보기
+            네이버 블로그 전체 보기
             <span className="w-9 h-9 flex items-center justify-center rounded-full border border-background-300 group-hover:border-primary-700 group-hover:bg-primary-700 group-hover:text-background-50 transition-all">
-              <i className="ri-arrow-right-line"></i>
+              <i className="ri-arrow-right-up-line"></i>
             </span>
           </a>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Featured large */}
-          <article className="lg:col-span-7 group bg-background-50 rounded-lg overflow-hidden cursor-pointer hover:bg-background-50 transition-all duration-500">
+          <a
+            href={BLOG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lg:col-span-7 group bg-background-50 rounded-lg overflow-hidden cursor-pointer block"
+          >
             <div className="aspect-[16/10] overflow-hidden">
               <img
                 src="https://readdy.ai/api/search-image?query=Old%20chinese%20classics%20books%20stacked%20on%20wooden%20desk%20with%20open%20page%20showing%20handwritten%20bazi%20pillars%20and%20brush%20ink%20notes%2C%20cream%20parchment%20pages%2C%20warm%20window%20light%2C%20editorial%20still%20life%20photography%2C%20moody%20earthy%20tones%2C%20refined%20academic%20atmosphere%2C%20muted%20brown%20palette&width=1400&height=875&seq=saju-blog-feat-2026&orientation=landscape"
@@ -67,17 +73,19 @@ export default function Blog() {
                   </div>
                 </div>
                 <span className="text-sm text-foreground-800 group-hover:text-primary-700 flex items-center gap-2 transition-colors">
-                  더 읽기 <i className="ri-arrow-right-line"></i>
+                  블로그에서 보기 <i className="ri-arrow-right-up-line"></i>
                 </span>
               </div>
             </div>
-          </article>
+          </a>
 
-          {/* Side smaller */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             {blogs.slice(1).map((b, idx) => (
-              <article
+              <a
                 key={b.title}
+                href={BLOG_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex gap-5 bg-background-50 rounded-lg p-5 cursor-pointer hover:bg-accent-50 transition-colors duration-500"
               >
                 <div className="w-32 h-32 md:w-36 md:h-36 shrink-0 rounded-md overflow-hidden bg-background-200">
@@ -103,7 +111,7 @@ export default function Blog() {
                     by {b.author} · {b.date}
                   </div>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         </div>

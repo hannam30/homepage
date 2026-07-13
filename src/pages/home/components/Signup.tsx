@@ -13,7 +13,7 @@ export default function Signup() {
     const honeypot = (formData.get("website_alt") as string) || "";
     if (honeypot.trim() !== "") {
       setStatus("success");
-      setMessage("회원가입 신청이 정상적으로 접수되었습니다.");
+      setMessage("회원가입을 축하드립니다");
       form.reset();
       return;
     }
@@ -51,7 +51,7 @@ export default function Signup() {
       });
       if (!res.ok) throw new Error();
       setStatus("success");
-      setMessage("회원가입 신청이 정상적으로 접수되었습니다. 곧 이메일로 안내드릴게요.");
+      setMessage("회원가입을 축하드립니다");
       form.reset();
     } catch {
       setStatus("error");
@@ -71,17 +71,12 @@ export default function Signup() {
             </div>
             <h2 className="font-heading text-foreground-950 text-4xl md:text-5xl leading-[1.1] font-light">
               학회와 함께<br />
-              <span className="italic font-medium text-primary-700">명리의 길</span>을 걷다.
+              <span className="italic font-medium text-primary-700">운명의 길</span>을 걷다.
             </h2>
-            <p className="mt-6 text-foreground-700 text-base leading-relaxed font-light">
-              회원이 되시면 매월 발간하는 학술지, 정기 라운드테이블 초대,
-              회원 전용 강의 할인 혜택을 받으실 수 있습니다.
-            </p>
-            <div className="mt-10 space-y-4">
+            <div className="mt-14 space-y-4">
               {[
-                "월간 학술지 PDF/우편 무료 발송",
                 "정기 학술 모임 우선 신청 권한",
-                "회원 전용 강의 30% 할인",
+                "회원 전용 강의 20% 할인",
                 "학회 인증 자격 과정 우선 안내",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 text-foreground-800 text-sm">
@@ -199,14 +194,15 @@ export default function Signup() {
                 </div>
               )}
 
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                className="mt-8 w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-primary-800 hover:bg-primary-900 disabled:opacity-60 text-background-50 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer transition-colors duration-300"
-              >
-                {status === "loading" ? "전송 중..." : "회원가입 신청하기"}
-                <i className="ri-arrow-right-line"></i>
-              </button>
+              <div className="mt-8 flex justify-center">
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary-800 hover:bg-primary-900 disabled:opacity-60 text-background-50 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer transition-colors duration-300"
+                >
+                  {status === "loading" ? "전송 중..." : "회원가입"}
+                </button>
+              </div>
             </form>
           </div>
         </div>

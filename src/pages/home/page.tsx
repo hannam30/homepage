@@ -46,14 +46,13 @@ export default function Home() {
             >
               <div className="min-h-full flex flex-col">
                 <Component onNavigate={navigate} />
-                {isActive && id === "signup" && (
-                  <Footer onNavigate={navigate} />
-                )}
               </div>
             </div>
           );
         })}
       </div>
+
+      <Footer />
     </main>
   );
 }

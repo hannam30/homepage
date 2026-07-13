@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { navItems } from "@/mocks/home";
 
 interface NavbarProps {
@@ -8,6 +9,7 @@ interface NavbarProps {
 
 export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
 
   const hrefToSection = (href: string) => {
     const id = href.replace("#", "");
@@ -15,8 +17,18 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
     return id;
   };
 
-  const handleNavigate = (href: string) => {
-    onNavigate(hrefToSection(href));
+  const handleNavigate = (item: (typeof navItems)[number]) => {
+    if (item.external) {
+      window.open(item.href, "_blank", "noopener,noreferrer");
+      setMobileOpen(false);
+      return;
+    }
+    if (item.route) {
+      navigate(item.href);
+      setMobileOpen(false);
+      return;
+    }
+    onNavigate(hrefToSection(item.href));
     setMobileOpen(false);
   };
 
@@ -24,7 +36,6 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
     <header className="bg-background-50 border-b border-background-200/70">
       <nav className="px-6 md:px-10 lg:px-16">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <a
             onClick={(e) => { e.preventDefault(); onNavigate("hero"); }}
             className="flex items-center gap-3 cursor-pointer group"
@@ -40,15 +51,20 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
             </div>
           </a>
 
-          {/* Desktop nav */}
           <ul className="hidden lg:flex items-center gap-9">
             {navItems.map((item) => {
-              const sectionId = hrefToSection(item.href);
-              const isActive = activeSection === sectionId;
+              const isExternal = Boolean(item.external);
+              const isRoute = Boolean(item.route);
+              const sectionId = !isExternal && !isRoute ? hrefToSection(item.href) : "";
+              const isActive = !isExternal && !isRoute && activeSection === sectionId;
               return (
-                <li key={item.href}>
+                <li key={item.href + item.label}>
                   <a
-                    onClick={(e) => { e.preventDefault(); handleNavigate(item.href); }}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate(item);
+                    }}
                     className={`text-sm tracking-wide cursor-pointer transition-colors duration-300 whitespace-nowrap ${
                       isActive
                         ? "text-accent-600 font-medium"
@@ -56,24 +72,29 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
                     }`}
                   >
                     {item.label}
+                    {isExternal && (
+                      <i className="ri-external-link-line text-xs ml-1 opacity-60"></i>
+                    )}
                   </a>
                 </li>
               );
             })}
           </ul>
 
-          {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              onClick={(e) => { e.preventDefault(); onNavigate("signup"); }}
-              className="px-5 py-2.5 rounded-full bg-primary-700 text-background-50 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer hover:bg-primary-800 transition-colors duration-300 flex items-center gap-2"
+              href="/unse"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/unse");
+              }}
+              className="px-5 py-2.5 rounded-full bg-accent-600 text-background-50 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer hover:bg-accent-700 transition-colors duration-300 flex items-center gap-2"
             >
-              회원 가입
+              운세 확인하기
               <i className="ri-arrow-right-line"></i>
             </a>
           </div>
 
-          {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
             className="lg:hidden w-10 h-10 flex items-center justify-center rounded-md cursor-pointer text-primary-900"
@@ -83,26 +104,37 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
           </button>
         </div>
 
-        {/* Mobile menu */}
         {mobileOpen && (
           <div className="lg:hidden pb-6 pt-2 border-t border-background-200/60 bg-background-50/98 backdrop-blur">
             <ul className="flex flex-col gap-1 pt-3">
               {navItems.map((item) => (
-                <li key={item.href}>
+                <li key={item.href + item.label}>
                   <a
-                    onClick={() => handleNavigate(item.href)}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate(item);
+                    }}
                     className="block px-2 py-3 text-primary-800 text-sm cursor-pointer hover:bg-background-100 rounded"
                   >
                     {item.label}
+                    {item.external && (
+                      <i className="ri-external-link-line text-xs ml-1 opacity-60"></i>
+                    )}
                   </a>
                 </li>
               ))}
               <li className="pt-2">
                 <a
-                  onClick={() => { onNavigate("signup"); setMobileOpen(false); }}
-                  className="block text-center px-5 py-3 rounded-full bg-primary-700 text-background-50 text-sm cursor-pointer"
+                  href="/unse"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/unse");
+                    setMobileOpen(false);
+                  }}
+                  className="block text-center px-5 py-3 rounded-full bg-accent-600 text-background-50 text-sm cursor-pointer"
                 >
-                  회원 가입 →
+                  운세 확인하기 →
                 </a>
               </li>
             </ul>
