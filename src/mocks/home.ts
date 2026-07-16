@@ -90,6 +90,7 @@ export const phonePrograms = [
     title: "핸드폰버전 구성학 프로그램",
     desc: "전통 구성학 원리를 따르며, 평생·년·월·일의 기운 흐름을 그래프화하고 각 반·궁의 해석을 터치로 바로 확인할 수 있도록 구성한 모바일 구성학 프로그램입니다.",
     images: [
+      "/images/phone/unse_analysis.jpg",
       "/images/phone/gusung_1.jpg",
       "/images/phone/gusung_2.jpg",
       "/images/phone/gusung_3.jpg",
@@ -136,6 +137,7 @@ export const phonePrograms = [
     title: "핸드폰버전 기문둔갑 프로그램",
     desc: "성지기문둔갑 전문프로그램을 모바일에 이식한 버전으로, 고서 체계를 따르며 팔문·팔괘·팔장·구성의 왕약과 궁 해석, 평생·년·월·일 에너지 그래프를 제공합니다.",
     images: [
+      "/images/phone/unse_analysis.jpg",
       "/images/phone/gimun_1.jpg",
       "/images/phone/gimun_2.jpg",
       "/images/phone/gimun_3.jpg",
