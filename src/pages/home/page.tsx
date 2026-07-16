@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -6,7 +6,6 @@ import Programs from "./components/Programs";
 import FortuneAndYoutube from "./components/FortuneAndYoutube";
 import Blog from "./components/Blog";
 import Signup from "./components/Signup";
-import Footer from "./components/Footer";
 
 const sections = [
   { id: "hero", label: "홈", Component: Hero },
@@ -19,12 +18,33 @@ const sections = [
 
 type SectionId = (typeof sections)[number]["id"];
 
+const isSectionId = (value: string): value is SectionId =>
+  sections.some((s) => s.id === value);
+
 export default function Home() {
-  const [activeSection, setActiveSection] = useState<SectionId>("hero");
+  const [activeSection, setActiveSection] = useState<SectionId>(() => {
+    const hash = window.location.hash.replace("#", "");
+    return isSectionId(hash) ? hash : "hero";
+  });
 
   const navigate = (section: string) => {
-    setActiveSection(section as SectionId);
+    if (!isSectionId(section)) return;
+    setActiveSection(section);
+    const nextHash = section === "hero" ? "" : `#${section}`;
+    if (window.location.hash !== nextHash) {
+      window.history.replaceState(null, "", nextHash || window.location.pathname);
+    }
   };
+
+  useEffect(() => {
+    const onHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (isSectionId(hash)) setActiveSection(hash);
+      else if (!hash) setActiveSection("hero");
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   return (
     <main className="h-screen flex flex-col overflow-hidden bg-background-50 text-foreground-900 font-body">

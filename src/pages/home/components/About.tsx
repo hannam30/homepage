@@ -105,22 +105,22 @@ function SocietyPanel() {
               {
                 icon: "ri-file-copy-2-line",
                 title: "문헌 고증",
-                desc: "50여 권의 기문둔갑 고서를 철저히 고증·분석",
+                desc: "50여 권의 기문둔갑 고서를 철저히 고증·분석하여 핵심 비법 집대성",
               },
               {
                 icon: "ri-shield-check-line",
                 title: "법적 공신력",
-                desc: "저작권 등록 완료 및 특허 출원 진행",
+                desc: "저작권 등록 완료 및 특허 출원 진행 중인 독자적 프로그램",
               },
               {
                 icon: "ri-database-2-line",
                 title: "임상 데이터",
-                desc: "오랜 기간 축적된 심층 임상 데이터",
+                desc: "오랜 기간 축적된 심층 임상 데이터로 정교한 시너지 구현",
               },
               {
                 icon: "ri-user-heart-line",
                 title: "삶의 동반자",
-                desc: "두려움에서 확신으로 가는 여정을 함께",
+                desc: "두려움에서 확신으로 — 당신의 여정에 가장 든든한 동반자",
               },
             ].map((v) => (
               <div key={v.title} className="flex gap-4">
@@ -137,7 +137,8 @@ function SocietyPanel() {
         </div>
       </div>
 
-      <div className="mt-12 md:mt-16 max-w-3xl mx-auto translate-x-10 md:translate-x-20 lg:translate-x-28">
+      <div className="mt-12 md:mt-16 max-w-4xl mx-auto">
+        <div className="w-12 h-px bg-background-300/70 mx-auto mb-8" />
         <p className="text-foreground-800 text-base md:text-lg leading-[1.75] font-light text-justify">
           이제 사주성지학회는 정통 학문의 맥을 올바르게 이어가는 것을 넘어,
           여러분의 삶이 두려움에서 확신으로 바뀌는 그 모든 여정에 가장 든든한 동반자가 되고자 합니다.
@@ -146,7 +147,14 @@ function SocietyPanel() {
           동양학의 진정한 가치와 지혜를 증명해 나갈 사주성지학회의 걸음에
           앞으로도 따뜻한 관심과 성원을 부탁드립니다.
         </p>
-        <p className="mt-4 text-foreground-800 text-base md:text-lg font-light text-right pr-8 md:pr-12">
+        <div className="w-16 h-px bg-background-300/60 mx-auto my-6" />
+        <p className="text-foreground-800 text-base md:text-lg leading-[1.75] font-light text-justify">
+          시공간의 흐름을 포착하여 능동적으로 삶을 개척해 나가는 최고의 전략입니다.
+          사주성지학회는 앞으로도 정통 학문의 맥을 올바르게 이어가며,
+          여러분의 삶이 두려움에서 확신으로 바뀌는 그 모든 여정에 든든한 동반자로
+          함께할 것을 약속드립니다.
+        </p>
+        <p className="mt-6 text-center text-foreground-700 text-lg md:text-xl font-medium font-heading">
           감사합니다.
         </p>
       </div>

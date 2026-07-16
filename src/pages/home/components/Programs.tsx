@@ -66,7 +66,13 @@ function ImageSlider({
   );
 }
 
-function PhoneSlider({ images }: { images: string[] }) {
+function PhoneSlider({
+  images,
+  fit = "cover",
+}: {
+  images: string[];
+  fit?: "cover" | "contain";
+}) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -78,18 +84,29 @@ function PhoneSlider({ images }: { images: string[] }) {
   }, [images.length]);
 
   return (
-    <div className="relative grid w-full">
+    <div className="relative w-full aspect-[9/19] min-h-[360px] bg-primary-950">
       {images.map((img, i) => (
         <img
           key={img}
           src={img}
-          alt={`성지사주 58가지 핵심운세 즉답 ${i + 1}`}
-          style={{ gridArea: "1 / 1" }}
-          className={`w-full h-auto object-cover transition-opacity duration-500 ${
-            i === index ? "opacity-100" : "opacity-0"
-          }`}
+          alt={`성지사주 모바일 화면 ${i + 1}`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${
+            fit === "contain" ? "object-contain bg-primary-950" : "object-cover"
+          } ${i === index ? "opacity-100 z-[1]" : "opacity-0 z-0"}`}
         />
       ))}
+      {images.length > 1 && (
+        <div className="absolute bottom-3 left-0 right-0 z-[2] flex justify-center gap-1.5">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              className={`w-1.5 h-1.5 rounded-full ${
+                i === index ? "bg-accent-400" : "bg-white/35"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -140,6 +157,91 @@ export default function Programs({ onNavigate }: ProgramsProps) {
             30년 연구와 50여 권 고서 고증을 바탕으로 자체 개발한 독자적 시스템.
             2.0부터 7.0까지 버전별로 진화하는 기문둔갑 분석 플랫폼입니다.
           </p>
+        </div>
+
+        {/* Mobile apps: 기문둔갑 핸드폰 + 58가지 핸드폰 — 첫 화면에 둘 다 노출 */}
+        <div className="mb-10 md:mb-12 bg-primary-900 rounded-lg overflow-hidden">
+          <div className="p-6 md:p-8 lg:p-10">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-2 h-2 rounded-full bg-accent-400" />
+              <span className="text-accent-300 text-xs tracking-[0.3em] uppercase font-label">
+                Mobile Apps
+              </span>
+            </div>
+            <h3 className="font-heading text-background-50 text-2xl md:text-3xl leading-[1.15] font-light mb-2">
+              핸드폰에서도 바로 보는
+              <span className="font-medium italic"> 성지 프로그램</span>
+            </h3>
+            <p className="text-background-50/70 text-sm md:text-base leading-relaxed font-light mb-8 max-w-3xl">
+              기문둔갑 모바일 화면과 58가지 핵심 운세 즉답 화면을 함께 준비했습니다.
+              아래에서 두 버전을 바로 확인할 수 있습니다.
+            </p>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+              {/* 기문둔갑 핸드폰 */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <div className="relative shrink-0">
+                  <div className="w-[180px] sm:w-[200px] rounded-[2rem] border-[6px] border-primary-700 overflow-hidden bg-primary-700 shadow-2xl">
+                    <PhoneSlider
+                      images={["/images/phone_gimun_1.png", "/images/phone_gimun_2.png"]}
+                      fit="contain"
+                    />
+                  </div>
+                </div>
+                <div className="flex-1 text-center sm:text-left pt-1">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-accent-500/20 text-accent-300 text-xs font-label mb-3">
+                    <i className="ri-smartphone-line" />
+                    기문둔갑 핸드폰 버전
+                  </div>
+                  <h4 className="font-heading text-background-50 text-xl font-medium mb-2">
+                    성지 기문둔갑 모바일
+                  </h4>
+                  <p className="text-background-50/65 text-sm leading-relaxed font-light mb-4">
+                    구궁·재물 등 기문둔갑 핵심 화면을 핸드폰에서도 확인할 수 있도록 구성한 모바일 버전입니다.
+                  </p>
+                  <ul className="space-y-2 text-left">
+                    {["구궁 포국 화면", "재물·핵심 운세 항목", "모바일 최적화 UI"].map((t) => (
+                      <li key={t} className="flex items-center gap-2 text-background-50/80 text-sm">
+                        <i className="ri-check-line text-accent-400" />
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* 58가지 핸드폰 */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <div className="relative shrink-0">
+                  <div className="w-[180px] sm:w-[200px] rounded-[2rem] border-[6px] border-primary-700 overflow-hidden bg-primary-700 shadow-2xl">
+                    <PhoneSlider
+                      images={["/images/phone_1.png", "/images/phone_2.png"]}
+                      fit="cover"
+                    />
+                  </div>
+                </div>
+                <div className="flex-1 text-center sm:text-left pt-1">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-accent-500/20 text-accent-300 text-xs font-label mb-3">
+                    <i className="ri-smartphone-line" />
+                    58가지 핸드폰 버전
+                  </div>
+                  <h4 className="font-heading text-background-50 text-xl font-medium mb-2">
+                    58가지 핵심 운세 즉답
+                  </h4>
+                  <p className="text-background-50/65 text-sm leading-relaxed font-light mb-4">
+                    전문가팀이 엄선한 핵심 운세 항목을 핸드폰에서 즉답으로 확인하세요. 항목마다 1,000원부터입니다.
+                  </p>
+                  <Link
+                    to="/unse"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent-500 text-foreground-950 text-sm font-medium rounded-md whitespace-nowrap cursor-pointer hover:bg-accent-400 transition-colors"
+                  >
+                    운세 확인하기
+                    <i className="ri-arrow-right-line" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Program Cards Grid */}
@@ -268,115 +370,6 @@ export default function Programs({ onNavigate }: ProgramsProps) {
               </article>
             );
           })}
-        </div>
-
-        {/* 58 Questions Feature Section */}
-        <div className="mt-10 md:mt-12 bg-primary-900 rounded-lg overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-5">
-            {/* Text Content */}
-            <div className="lg:col-span-3 p-6 md:p-10 lg:p-12 flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-2 h-2 rounded-full bg-accent-400" />
-                <span className="text-accent-300 text-xs tracking-[0.3em] uppercase font-label">
-                  Instant Fortune
-                </span>
-              </div>
-              <h3 className="font-heading text-background-50 text-2xl md:text-3xl lg:text-4xl leading-[1.15] font-light mb-4">
-                58가지 핵심 운세
-                <br />
-                <span className="font-medium italic">즉답 시스템</span>
-              </h3>
-              <p className="text-background-50/70 text-sm md:text-base leading-relaxed font-light mb-6 max-w-lg">
-                20년 이상의 사주전문가팀이 엄선한 58가지 핵심 운세 항목을
-                즉답으로 확인하세요. 믿고 보는 운세의 기운, 항목마다
-                1,000원부터 시작됩니다.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                    <i className="ri-check-line" />
-                  </span>
-                  <div>
-                    <div className="text-background-50 text-sm font-medium mb-0.5">
-                      58가지 핵심 문항
-                    </div>
-                    <div className="text-background-50/50 text-xs">
-                      전문가 엄선 질문
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                    <i className="ri-check-line" />
-                  </span>
-                  <div>
-                    <div className="text-background-50 text-sm font-medium mb-0.5">
-                      즉답 제공
-                    </div>
-                    <div className="text-background-50/50 text-xs">
-                      기다림 없는 결과
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                    <i className="ri-check-line" />
-                  </span>
-                  <div>
-                    <div className="text-background-50 text-sm font-medium mb-0.5">
-                      1,000원부터
-                    </div>
-                    <div className="text-background-50/50 text-xs">
-                      항목별 부담 없는 가격
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                    <i className="ri-check-line" />
-                  </span>
-                  <div>
-                    <div className="text-background-50 text-sm font-medium mb-0.5">
-                      무료맛보기 ~ 패키지
-                    </div>
-                    <div className="text-background-50/50 text-xs">
-                      다양한 이용 옵션
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  to="/unse"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-foreground-950 text-sm font-medium rounded-md whitespace-nowrap cursor-pointer hover:bg-accent-400 transition-colors"
-                >
-                  운세 확인하기
-                  <i className="ri-arrow-right-line" />
-                </Link>
-                <span className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-background-50/20 text-background-50/70 text-sm rounded-md whitespace-nowrap">
-                  <i className="ri-shield-check-line" />
-                  성지사주학회 제공
-                </span>
-              </div>
-            </div>
-
-            {/* Mobile Screenshot */}
-            <div className="lg:col-span-2 relative bg-primary-800/50 flex items-center justify-center p-6 md:p-10">
-              <div className="relative">
-                {/* Phone frame */}
-                <div className="w-[220px] md:w-[240px] rounded-[2rem] border-[6px] border-primary-700 overflow-hidden bg-primary-700 shadow-2xl">
-                  <PhoneSlider
-                    images={["/images/phone_1.png", "/images/phone_2.png"]}
-                  />
-                </div>
-                {/* Decorative ring */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full border border-accent-500/30" />
-                <div className="absolute -bottom-4 -left-8 w-16 h-16 rounded-full bg-accent-500/10" />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
