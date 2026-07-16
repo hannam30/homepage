@@ -80,6 +80,51 @@ function ImageSlider({
   );
 }
 
+function PhoneSlider({
+  images,
+  fit = "cover",
+}: {
+  images: string[];
+  fit?: "cover" | "contain";
+}) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full aspect-[9/19] min-h-[360px] bg-primary-950">
+      {images.map((img, i) => (
+        <img
+          key={img}
+          src={img}
+          alt={`성지사주 모바일 화면 ${i + 1}`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${
+            fit === "contain" ? "object-contain bg-primary-950" : "object-cover"
+          } ${i === index ? "opacity-100 z-[1]" : "opacity-0 z-0"}`}
+        />
+      ))}
+      {images.length > 1 && (
+        <div className="absolute bottom-3 left-0 right-0 z-[2] flex justify-center gap-1.5">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              className={`w-1.5 h-1.5 rounded-full ${
+                i === index ? "bg-accent-400" : "bg-white/35"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ProgramCardGrid({
   items,
   numberOffset = 0,
@@ -271,91 +316,103 @@ export default function Programs({ onNavigate }: ProgramsProps) {
 
         {/* Instant Fortune */}
         <div className="mb-10 md:mb-12 bg-primary-900 rounded-lg overflow-hidden">
-          <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-2 h-2 rounded-full bg-accent-400" />
-              <span className="text-accent-300 text-xs tracking-[0.3em] uppercase font-label">
-                Instant Fortune · Mobile
-              </span>
-            </div>
-            <h3 className="font-heading text-background-50 text-2xl md:text-3xl lg:text-4xl leading-[1.15] font-light mb-4">
-              58가지 핵심 운세
-              <br />
-              <span className="font-medium italic">즉답 시스템</span>
-            </h3>
-            <p className="text-background-50/70 text-sm md:text-base leading-relaxed font-light mb-6 max-w-2xl">
-              20년 이상의 사주전문가팀이 엄선한 58가지 핵심 운세 항목을
-              즉답으로 확인하세요. 믿고 보는 운세의 기운, 항목마다
-              1,000원부터 시작됩니다. 모바일에서도 바로 확인할 수 있습니다.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-5">
+            <div className="lg:col-span-3 p-6 md:p-10 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-2 h-2 rounded-full bg-accent-400" />
+                <span className="text-accent-300 text-xs tracking-[0.3em] uppercase font-label">
+                  Instant Fortune · Mobile
+                </span>
+              </div>
+              <h3 className="font-heading text-background-50 text-2xl md:text-3xl lg:text-4xl leading-[1.15] font-light mb-4">
+                58가지 핵심 운세
+                <br />
+                <span className="font-medium italic">즉답 시스템</span>
+              </h3>
+              <p className="text-background-50/70 text-sm md:text-base leading-relaxed font-light mb-6 max-w-lg">
+                20년 이상의 사주전문가팀이 엄선한 58가지 핵심 운세 항목을
+                즉답으로 확인하세요. 믿고 보는 운세의 기운, 항목마다
+                1,000원부터 시작됩니다. 모바일에서도 바로 확인할 수 있습니다.
+              </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
-              <div className="flex items-start gap-3">
-                <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                  <i className="ri-check-line" />
-                </span>
-                <div>
-                  <div className="text-background-50 text-sm font-medium mb-0.5">
-                    58가지 핵심 문항
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
+                    <i className="ri-check-line" />
+                  </span>
+                  <div>
+                    <div className="text-background-50 text-sm font-medium mb-0.5">
+                      58가지 핵심 문항
+                    </div>
+                    <div className="text-background-50/50 text-xs">
+                      전문가 엄선 질문
+                    </div>
                   </div>
-                  <div className="text-background-50/50 text-xs">
-                    전문가 엄선 질문
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
+                    <i className="ri-check-line" />
+                  </span>
+                  <div>
+                    <div className="text-background-50 text-sm font-medium mb-0.5">
+                      모바일 전용 화면
+                    </div>
+                    <div className="text-background-50/50 text-xs">
+                      핸드폰에서도 바로 확인
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
+                    <i className="ri-check-line" />
+                  </span>
+                  <div>
+                    <div className="text-background-50 text-sm font-medium mb-0.5">
+                      1,000원부터
+                    </div>
+                    <div className="text-background-50/50 text-xs">
+                      항목별 부담 없는 가격
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
+                    <i className="ri-check-line" />
+                  </span>
+                  <div>
+                    <div className="text-background-50 text-sm font-medium mb-0.5">
+                      무료맛보기 ~ 패키지
+                    </div>
+                    <div className="text-background-50/50 text-xs">
+                      다양한 이용 옵션
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                  <i className="ri-check-line" />
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  to="/unse"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-foreground-950 text-sm font-medium rounded-md whitespace-nowrap cursor-pointer hover:bg-accent-400 transition-colors"
+                >
+                  운세 확인하기
+                  <i className="ri-arrow-right-line" />
+                </Link>
+                <span className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-background-50/20 text-background-50/70 text-sm rounded-md whitespace-nowrap">
+                  <i className="ri-smartphone-line" />
+                  모바일 버전 지원
                 </span>
-                <div>
-                  <div className="text-background-50 text-sm font-medium mb-0.5">
-                    모바일 전용 화면
-                  </div>
-                  <div className="text-background-50/50 text-xs">
-                    핸드폰에서도 바로 확인
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                  <i className="ri-check-line" />
-                </span>
-                <div>
-                  <div className="text-background-50 text-sm font-medium mb-0.5">
-                    1,000원부터
-                  </div>
-                  <div className="text-background-50/50 text-xs">
-                    항목별 부담 없는 가격
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-500/20 text-accent-400 text-sm shrink-0">
-                  <i className="ri-check-line" />
-                </span>
-                <div>
-                  <div className="text-background-50 text-sm font-medium mb-0.5">
-                    무료맛보기 ~ 패키지
-                  </div>
-                  <div className="text-background-50/50 text-xs">
-                    다양한 이용 옵션
-                  </div>
-                </div>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                to="/unse"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-foreground-950 text-sm font-medium rounded-md whitespace-nowrap cursor-pointer hover:bg-accent-400 transition-colors"
-              >
-                운세 확인하기
-                <i className="ri-arrow-right-line" />
-              </Link>
-              <span className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-background-50/20 text-background-50/70 text-sm rounded-md whitespace-nowrap">
-                <i className="ri-smartphone-line" />
-                모바일 버전 지원
-              </span>
+            <div className="lg:col-span-2 relative bg-primary-800/50 flex items-center justify-center p-6 md:p-8 order-1 lg:order-2">
+              <div className="relative">
+                <div className="w-[200px] sm:w-[220px] md:w-[240px] rounded-[2rem] border-[6px] border-primary-700 overflow-hidden bg-primary-700 shadow-2xl">
+                  <PhoneSlider images={["/images/phone_1.png", "/images/phone_2.png"]} />
+                </div>
+                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full border border-accent-500/30 pointer-events-none" />
+                <div className="absolute -bottom-4 -left-8 w-16 h-16 rounded-full bg-accent-500/10 pointer-events-none" />
+              </div>
             </div>
           </div>
         </div>
