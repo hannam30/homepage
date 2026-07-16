@@ -48,11 +48,11 @@ export const programs = [
     title: "성지 기문둔갑 5.0",
     desc: "세성, 오기유통, 감리지견과 함께 운세분석 그래프를 탑재한 고급 프로그램. 기문둔갑 격국과 평생·년·월·일 기운의 흐름을 한눈에 읽는 종합 진단 시스템입니다.",
     images: [
-      "/images/5_unse.png",
       "/images/5_1.png",
       "/images/5_2.png",
       "/images/5_3.png",
       "/images/5_4.png",
+      "/images/5_unse.png",
     ],
     features: [
       "운세분석 — 사주를 근간으로 평생운·년운·월운·일운의 기운을 수치로 역산하여 그래프화하였습니다. 일평생 본인의 에너지 상태의 흐름을 살펴볼 수 있습니다.",
@@ -90,13 +90,13 @@ export const phonePrograms = [
     title: "핸드폰버전 구성학 프로그램",
     desc: "전통 구성학 원리를 따르며, 평생·년·월·일의 기운 흐름을 그래프화하고 각 반·궁의 해석을 터치로 바로 확인할 수 있도록 구성한 모바일 구성학 프로그램입니다.",
     images: [
-      "/images/phone/unse_analysis.jpg",
       "/images/phone/gusung_1.jpg",
       "/images/phone/gusung_2.jpg",
       "/images/phone/gusung_3.jpg",
       "/images/phone/gusung_4.jpg",
       "/images/phone/gusung_5.jpg",
       "/images/phone/gusung_6.jpg",
+      "/images/phone/unse_analysis.jpg",
     ],
     features: [
       "전통구성학 원리를 따랐습니다.",
@@ -137,12 +137,12 @@ export const phonePrograms = [
     title: "핸드폰버전 기문둔갑 프로그램",
     desc: "성지기문둔갑 전문프로그램을 모바일에 이식한 버전으로, 고서 체계를 따르며 팔문·팔괘·팔장·구성의 왕약과 궁 해석, 평생·년·월·일 에너지 그래프를 제공합니다.",
     images: [
-      "/images/phone/unse_analysis.jpg",
       "/images/phone/gimun_1.jpg",
       "/images/phone/gimun_2.jpg",
       "/images/phone/gimun_3.jpg",
       "/images/phone/gimun_4.jpg",
       "/images/phone/gimun_5.jpg",
+      "/images/phone/unse_analysis.jpg",
     ],
     features: [
       "핸드폰버전 기문둔갑프로그램은 성지기문둔갑전문프로그램을 바탕으로 이루어졌습니다.",
