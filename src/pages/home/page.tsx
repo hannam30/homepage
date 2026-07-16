@@ -6,6 +6,7 @@ import Programs from "./components/Programs";
 import FortuneAndYoutube from "./components/FortuneAndYoutube";
 import Blog from "./components/Blog";
 import Signup from "./components/Signup";
+import Footer from "./components/Footer";
 
 const sections = [
   { id: "hero", label: "홈", Component: Hero },
