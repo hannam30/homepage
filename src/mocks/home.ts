@@ -94,9 +94,6 @@ export const phonePrograms = [
       "/images/phone/gusung_2.jpg",
       "/images/phone/gusung_3.jpg",
       "/images/phone/gusung_4.jpg",
-      "/images/phone/gusung_5.jpg",
-      "/images/phone/gusung_6.jpg",
-      "/images/phone/unse_analysis.jpg",
     ],
     features: [
       "전통구성학 원리를 따랐습니다.",
@@ -121,7 +118,6 @@ export const phonePrograms = [
       "/images/phone/unse58_2.jpg",
       "/images/phone/unse58_3.jpg",
       "/images/phone/unse58_4.jpg",
-      "/images/phone/unse58_5.jpg",
     ],
     features: [
       "기문둔갑 신·천·인·지 개념과 기운의 왕·약, 합·형·충·파·해·원진, 왕상휴수사, 신장의 왕약을 모두 도입하여 로직화하고 20여년 이상의 상담 경험을 종합하여 58가지 엄선된 질문지를 선택하여 로직화하여 항상 일정한 균형적 내용을 표기하도록 하였습니다.",
@@ -141,8 +137,6 @@ export const phonePrograms = [
       "/images/phone/gimun_2.jpg",
       "/images/phone/gimun_3.jpg",
       "/images/phone/gimun_4.jpg",
-      "/images/phone/gimun_5.jpg",
-      "/images/phone/unse_analysis.jpg",
     ],
     features: [
       "핸드폰버전 기문둔갑프로그램은 성지기문둔갑전문프로그램을 바탕으로 이루어졌습니다.",
